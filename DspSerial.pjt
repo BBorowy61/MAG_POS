@@ -1,0 +1,59 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectDir="C:\Documents and Settings\borowy\My Documents\Maglev\DSP_Serial_Tests\"
+ProjectType=Executable
+CPUFamily=TMS320C28XX
+Tool="Compiler"
+Tool="CustomBuilder"
+Tool="DspBiosBuilder"
+Tool="Linker"
+Config="Debug"
+Config="Release"
+
+[Source Files]
+Source="ASM\CodeStartBranch.asm"
+Source="ASM\delay_us.asm"
+Source="lib\Flash2812_API_V210.lib"
+Source="lib\IQmath.lib"
+Source="Source\ADC.c"
+Source="Source\BCD.c"
+Source="Source\DAC.c"
+Source="Source\DefaultIsr.c"
+Source="Source\Display.c"
+Source="Source\MainLoop.c"
+Source="Source\Mirror.c"
+Source="Source\PieVect.c"
+Source="Source\Qep.c"
+Source="Source\Serial.c"
+Source="Source\System.c"
+Source="Cmd\Flash.cmd"
+Source="Cmd\Headers.cmd"
+
+["Compiler" Settings: "Debug"]
+Options=-g -k -fr"$(Proj_dir)\Debug" -i"..\include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28
+
+["Compiler" Settings: "Release"]
+Options=-o3 -fr"$(Proj_dir)\Release" -d"LARGE_MODEL" -ml -v28
+
+["Linker" Settings: "Debug"]
+Options=-a -c -heap0x400 -m".\Debug\DspSerial.map" -o".\Debug\DspSerial.out" -stack0x400 -w -x -i".\lib" -l"rts2800_ml.lib"
+
+["Linker" Settings: "Release"]
+Options=-c -m".\Release\Wireless Mirror.map" -o".\Release\Wireless Mirror.out" -w -x
+
+["ASM\CodeStartBranch.asm" Settings: "Debug"]
+LinkOrder=1
+
+["Cmd\Flash.cmd" Settings: "Debug"]
+LinkOrder=2
+
+["Cmd\Flash.cmd" Settings: "Release"]
+LinkOrder=1
+
+["Cmd\Headers.cmd" Settings: "Debug"]
+LinkOrder=3
+
+["Cmd\Headers.cmd" Settings: "Release"]
+LinkOrder=1
+

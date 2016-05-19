@@ -505,11 +505,18 @@ void positionMessage(long position) {
 	sequenceID &= 0xFF;
 	checksum = ((MESSAGEHEADER + poslower + posupper + sequenceID)&0xFF);
 
+	SciaRegs.SCITXBUF = sequenceID;
+
+	delay_us(10);
+/*
 	SciaRegs.SCITXBUF = MESSAGEHEADER;
 	SciaRegs.SCITXBUF = sequenceID;
 	SciaRegs.SCITXBUF = sequenceID;
 	SciaRegs.SCITXBUF = sequenceID;
-	SciaRegs.SCITXBUF = checksum;
+	SciaRegs.SCITXBUF = checksum;*/
+
+	//SendDataA("A",1);
+
 /*
 	SciaRegs.SCITXBUF = MESSAGEHEADER;
 	SciaRegs.SCITXBUF = sequenceID++;
